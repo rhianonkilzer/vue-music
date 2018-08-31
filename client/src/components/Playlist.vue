@@ -3,7 +3,7 @@
 </template>
 <script>
     export default {
-        name: "MySong",
+        name: "Playlist",
         data() {
             return {
 
