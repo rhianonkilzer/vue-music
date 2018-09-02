@@ -8,21 +8,31 @@
 </template>
 
 <script>
-  import MySong from "@/components/MySong";
   import Song from "@/components/Song";
-  import Home from '@/views/Home'
+  import Playlist from "@/components/Playlist"
 
   export default {
     name: 'Home',
     data() {
       return {
-        mySong: {},
-        song: {},
-        playlist: []
+        artist: ''
       }
     },
-    components: {
-      Home
+    computed: {
+      songs() {
+        this.$store.state.songs
+      },
+      playlist() {
+        return this.$store.state.playlist
+      }
+    },
+    methods: {
+      addToPlaylist(song) {
+        this.$store.dispatch('addToPlaylist')
+      },
+      searchMusic(event) {
+        this.$store.dispatch('search', this.artist)
+      }
     }
   }
 </script>

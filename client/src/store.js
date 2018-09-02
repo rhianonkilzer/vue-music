@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
+// @ts-ignore
 import Song from './models/Song'
 
 let musicApi = Axios.create({
