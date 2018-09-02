@@ -16,6 +16,8 @@ server.use(express.static(__dirname + '/../www/'))
 
 
 
+
+
 server.unsubscribe('*', (req, res, next) => {
     res.status(404).send('<h1>NO PAGE FOUND</h1>')
 })
