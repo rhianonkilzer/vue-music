@@ -49,6 +49,13 @@ export default new Vuex.Store({
           console.log("added song ", res)
           dispatch('getSongs')
         })
+    },
+    deleteSong({ dispatch, commit }, song) {
+      playlistApi.delete('/songs/' + song._id)
+        .then(res => {
+          console.log('deleted', res)
+          dispatch('getSongs')
+        })
     }
   }
 
