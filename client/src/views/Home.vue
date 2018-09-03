@@ -1,14 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/furryphones.jpg">
-    <form action="search">
-      <input type="text" name="search" placeholder="Search...">
-    </form>
+    <div class="row furry">
+      <div class="col-12">
+        <form @submit.prevent="searchMusic">
+          <input type="text" name="search" placeholder="Search..." v-model="artist">
+          <button class="search" type="submit">Search</button>
+        </form>
+      </div>
+      <results class="col-6"></results>
+      <playlist class="col-6"></playlist>
+    </div>
   </div>
 </template>
 
 <script>
-  import Song from "@/components/Song";
+  import Results from "@/components/Results";
   import Playlist from "@/components/Playlist"
 
   export default {
@@ -30,9 +36,23 @@
       addToPlaylist(song) {
         this.$store.dispatch('addToPlaylist')
       },
-      searchMusic(event) {
-        this.$store.dispatch('search', this.artist)
+      searchMusic() {
+        this.$store.dispatch('searchMusic', this.artist)
       }
+    },
+    components: {
+      Playlist,
+      Results
     }
   }
 </script>
+
+<style>
+  .furry {
+    background-image: url('../assets/furryphones.jpg');
+    height: 100vh;
+    width: auto;
+    background-repeat: no-repeat;
+
+  }
+</style>

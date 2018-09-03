@@ -1,5 +1,5 @@
 let router = require('express').Router()
-let Songs = require('../models/Song')
+let Songs = require('../models/Song.js')
 
 router.get('/', (req, res, next) => {
     Songs.find({})
@@ -24,3 +24,5 @@ router.delete('/:id', (req, res, next) => {
 })
 
 module.exports = router
+
+

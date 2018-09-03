@@ -1,11 +1,11 @@
 
 let router = require('express').Router()
-let Playlist = require('../models/playlist')
+let playlist = require('../models/playlist')
 let mongoose = require('mongoose')
 let ObjectId = mongoose.Types.ObjectId
 
 router.get('/', (req, res, next) => {
-    Playlist.find({})
+    playlist.find({})
         .then(playlist => {
             return res.send(playlist)
         })
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-    Playlist.create(req.body)
+    playlist.create(req.body)
         .then(playlist => {
             return res.send(playlist)
         })
@@ -21,9 +21,9 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-    Playlist.findByIdAndUpdate(req.params.id, req.body)
+    playlist.findByIdAndUpdate(req.params.id, req.body)
         .then(() => res.send({
-            message: "song added"
+            message: "add successful"
         }))
         .catch(next)
 })

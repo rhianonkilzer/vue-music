@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
-// @ts-ignore
-import Song from './models/Song'
+import Song from './models/song.js'
 
 let musicApi = Axios.create({
-  baseURL: 'https://itunes.apple.com/search?term=',
+  baseURL: 'https://itunes.apple.com/',
+  timeout: 3000
+})
+
+let playlistApi = Axios.create({
+  baseURL: '//localhost:3000/api',
   timeout: 3000
 })
 
@@ -13,12 +17,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    playlist: {},
-    song: [],
+    playlist: [],
+    songs: [],
   },
   mutations: {
-    setSongs(state, song) {
-      state.song = song
+    setSongs(state, songs) {
+      state.songs = songs
     },
     setPlaylist(state, playlist) {
       state.playlist = playlist
@@ -26,17 +30,24 @@ export default new Vuex.Store({
   },
   actions: {
     getSongs({ commit, dispatch }) {
-      musicApi.get('/songs')
+      playlistApi.get('/songs')
         .then(res => {
-          commit('setSongs', res.data)
+          commit('setPlaylist', res.data)
         })
     },
 
     searchMusic({ dispatch, commit }, artist) {
-      musicApi.get(`/${artist}`)
+      musicApi.get(`search?term=${artist}`)
         .then(res => {
-          let music = res.data.results.map(s => new Song(s))
-          commit('setSongs', music)
+          var songList = res.data.results.map(s => new Song(s))
+          commit('setSongs', songList)
+        })
+    },
+    addSong({ dispatch, commit }, song) {
+      playlistApi.post('/songs', song)
+        .then(res => {
+          console.log("added song ", res)
+          dispatch('getSongs')
         })
     }
   }

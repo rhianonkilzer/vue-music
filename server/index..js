@@ -12,7 +12,10 @@ server.use(bp.urlencoded({
 }))
 server.use(express.static(__dirname + '/../www/'))
 
+let songRoutes = require('./routes/songs-route')
 
+
+server.use("/api/songs", songRoutes)
 
 
 
