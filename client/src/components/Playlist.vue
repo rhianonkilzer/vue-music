@@ -1,13 +1,18 @@
 <template>
     <div class="playlist">
+        <h1>Playlist</h1>
         <div v-for="song in playlist">
-            <p>{{song.album}}</p>
             <button type="button" @click="deleteSong(song)">
                 Delete
             </button>
             <audio controls>
                 <source :src="song.preview">
             </audio>
+            <img :src="song.albumArt" alt="albumArt" width="130" height="130">
+            <p>Artist: {{song.artist}}</p>
+            <p>Song Title: {{song.title}}</p>
+            <p>Album: {{song.album}}</p>
+            <p>Price: ${{song.price}}</p>
         </div>
 
     </div>
