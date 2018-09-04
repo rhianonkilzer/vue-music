@@ -1,14 +1,18 @@
 <template>
   <div class="home">
     <div class="row furry">
-      <div class="col-12">
+      <div class="col-12 search-bar">
         <form @submit.prevent="searchMusic">
           <input type="text" name="search" placeholder="Search..." v-model="artist">
           <button class="search" type="submit">Search</button>
         </form>
+        <hr>
+        <hr>
       </div>
-      <results class="col-6"></results>
+      <results class="col-6 justify-content-center"></results>
+
       <playlist class="col-6"></playlist>
+
     </div>
   </div>
 </template>
@@ -48,12 +52,4 @@
 </script>
 
 <style>
-  .furry {
-    background-image: url('../assets/furryphones.jpg');
-    height: 100vh;
-    width: auto;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="results">
         <h1>Search Results</h1>
-        <div v-for="song in songResults">
+        <div class="song" v-for="song in songResults">
             <button type="button" @click="addSong(song)">
                 Add Song
             </button>

@@ -1,7 +1,7 @@
 <template>
     <div class="playlist">
         <h1>Playlist</h1>
-        <div v-for="song in playlist">
+        <div class="song" v-for="song in playlist">
             <button type="button" @click="deleteSong(song)">
                 Delete
             </button>
